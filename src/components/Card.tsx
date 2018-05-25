@@ -14,6 +14,7 @@ class Card extends React.Component<ICardProps, any> {
         id={`${this.props.id}`}
         draggable={true}
         onDragStart={this.props.onDragStart}
+        onDragOver={this.props.onDragOver}
       />)
   }
 }

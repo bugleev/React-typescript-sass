@@ -13,7 +13,8 @@ function DragndropInterface(WrappedComponent: React.ComponentClass<any>) {
     public state = {
       blank: false,
       nextSib: null,
-      prevSib: null,
+      prevSib: null
+
     };
 
     public click = (ev: React.MouseEvent<HTMLDivElement>) => {
@@ -39,7 +40,6 @@ function DragndropInterface(WrappedComponent: React.ComponentClass<any>) {
       return count;
     };
     public drag = (ev: React.DragEvent<HTMLDivElement>) => {
-      console.log(":TEST DRAG")
       ev.dataTransfer.setData("text", ev.currentTarget.id);
       const parent = ev.currentTarget.parentElement as HTMLDivElement;
       const prevNode = parent.previousSibling as HTMLDivElement;
@@ -55,9 +55,8 @@ function DragndropInterface(WrappedComponent: React.ComponentClass<any>) {
       }
     };
 
-    public allowDrop = (ev: DragEvent): any => {
-      console.log(":TEST ALLOW")
-      const currentTarget = ev.currentTarget as HTMLDivElement;
+    public allowDrop = (ev: any) => {
+      const currentTarget = ev.target as HTMLDivElement;
       const currentId = currentTarget.id as string;
       if (currentId === "blank") {
         ev.preventDefault();
@@ -93,26 +92,24 @@ function DragndropInterface(WrappedComponent: React.ComponentClass<any>) {
       }
     };
 
-    public drop = (ev: React.DragEvent<HTMLDivElement>) => {
-      console.log(":TEST DROP")
-      if (ev.currentTarget.id === "blank") {
-        const parent = document.getElementById(ev.currentTarget.parentElement!.id) as HTMLDivElement;
-        const targetNode = document.getElementById(ev.currentTarget.id) as HTMLDivElement;
+    public drop = (ev: any) => {
+      if (ev.target.id === "blank") {
+        const parent = document.getElementById(ev.target.parentElement!.id) as HTMLDivElement;
+        const targetNode = document.getElementById(ev.target.id) as HTMLDivElement;
         ev.preventDefault();
         const data = ev.dataTransfer.getData("text");
         parent.insertBefore(document.getElementById(data) as HTMLDivElement, targetNode);
         parent.removeChild(targetNode);
       }
       if (
-        ev.currentTarget.id === this.state.prevSib ||
-        ev.currentTarget.id === this.state.nextSib
+        ev.target.id === this.state.prevSib ||
+        ev.target.id === this.state.nextSib
       ) {
         ev.preventDefault();
         const data = ev.dataTransfer.getData("text");
-        ev.currentTarget.appendChild(document.getElementById(data) as HTMLDivElement);
+        ev.target.appendChild(document.getElementById(data) as HTMLDivElement);
       }
     };
-
 
     public render() {
       return <WrappedComponent
