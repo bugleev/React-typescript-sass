@@ -1,0 +1,47 @@
+
+$break-large: 780px;  
+  
+.container
+  max-width: 1150px
+  margin: 0 auto
+  background-color: aliceblue
+  display: flex  
+  border: 1px solid blue
+  justify-content: space-between
+  align-items: flex-start
+  @media screen and (max-width: $break-large) 
+    flex-direction: column  
+  .column
+    width: 400px
+    position: relative
+    min-height: 400px
+    margin: 1rem
+    padding-top: 0.75em
+    display: flex
+    border: 1px solid green
+    flex-direction: column
+    flex: 1 1 250px
+    justify-content: flex-start
+    align-items: center
+    @media screen and (max-width: $break-large) 
+      flex-direction: row
+      flex-wrap: wrap
+      flex-basis: auto
+
+.draggable
+  width: 100px
+  height: 100px
+  border: 1px solid red
+  margin: 0.3em
+  background-color: orange    
+.blank
+  width: 100px
+  height: 100px
+  margin: 0.3em
+  background-color: rgba(255, 255, 255, 0)
+.field-text
+  justify-self: flex-start
+  font-family: cursive
+ 
+  
+
