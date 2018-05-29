@@ -1,8 +1,9 @@
 // tslint:disable:no-console
 import * as React from 'react';
 import Column from '../components/Column';
-import { populateColumn } from '../components/helpers';
+
 import '../styles.css';
+import * as data from './data.json';
 
 interface IAppProps {
   state: {
@@ -20,6 +21,7 @@ interface IAppState {
 }
 
 interface ILayoutProps extends React.HTMLAttributes<HTMLDivElement> {
+
   endNode?: null | string,
   onDragOver?: any,
   startNode?: null | string
@@ -43,7 +45,7 @@ const Layout: React.SFC<ILayoutProps> = (props) => {
 
 class App extends React.Component<IAppProps, IAppState> {
   public state = {
-    cards: populateColumn()
+    cards: data.cards
   }
 
   public shouldComponentUpdate(nextProps: any, nextState: any) {
@@ -62,26 +64,11 @@ class App extends React.Component<IAppProps, IAppState> {
         onClick={this.props.click}
         onDrop={this.props.drop}
         onDragOver={this.props.allowDrop}>
-        <Column name="Согласование" id="1">
-          {cards[0]}
-          {cards[1]}
-        </Column>
-        <Column name="В ожидании" id="2">
-          {cards[2]}
-          {cards[3]}
-        </Column>
-        <Column name="Разработка" id="3">
-          {cards[5]}
-          {cards[6]}
-        </Column>
-        <Column name="Тестирование" id="4">
-          {cards[7]}
-          {cards[8]}
-        </Column>
-        <Column name="Готово" id="5">
-          {cards[9]}
-          {cards[10]}
-        </Column>
+        <Column name="Согласование" id="1" cards={cards} />
+        <Column name="В ожидании" id="2" />
+        <Column name="Разработка" id="3" />
+        <Column name="Тестирование" id="4" />
+        <Column name="Готово" id="5" />
       </Layout>
     );
   }

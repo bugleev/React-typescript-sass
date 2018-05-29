@@ -1,8 +1,8 @@
 {
   "cards": [
     {
-      "card-id": "1",
-      "card-data": {
+      "id": "1",
+      "data": {
         "link": "Link 1",
         "number": "2341",
         "status": "error",
@@ -11,91 +11,91 @@
       }
     },
     {
-      "card-id": "2",
-      "card-data": {
-        "link": "Link 1",
-        "number": "2341",
+      "id": "2",
+      "data": {
+        "link": "Link 2",
+        "number": "2355",
         "status": "valid",
         "body": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero quia, quas ea delectus laborum expedita porro sunt enim, deleniti veniam nam iste earum consectetur, quisquam tenetur accusantium nisi quae dignissimos!",
         "stamp": "A.B."
       }
     },
     {
-      "card-id": "3",
-      "card-data": {
-        "link": "Link 1",
-        "number": "2341",
+      "id": "3",
+      "data": {
+        "link": "Link 141",
+        "number": "234",
+        "status": "done",
+        "body": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero quia, quas ea delectus laborum expedita porro sunt enim, deleniti veniam nam iste earum consectetur, quisquam tenetur accusantium nisi quae dignissimos!",
+        "stamp": "A.B."
+      }
+    },
+    {
+      "id": "4",
+      "data": {
+        "link": "Link 131",
+        "number": "666",
         "status": "error",
         "body": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero quia, quas ea delectus laborum expedita porro sunt enim, deleniti veniam nam iste earum consectetur, quisquam tenetur accusantium nisi quae dignissimos!",
         "stamp": "A.B."
       }
     },
     {
-      "card-id": "4",
-      "card-data": {
-        "link": "Link 1",
-        "number": "2341",
+      "id": "5",
+      "data": {
+        "link": "Link 32",
+        "number": "1241414",
+        "status": "done",
+        "body": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero quia, quas ea delectus laborum expedita porro sunt enim, deleniti veniam nam iste earum consectetur, quisquam tenetur accusantium nisi quae dignissimos!",
+        "stamp": "A.B."
+      }
+    },
+    {
+      "id": "6",
+      "data": {
+        "link": "Link 90",
+        "number": "67996",
         "status": "error",
         "body": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero quia, quas ea delectus laborum expedita porro sunt enim, deleniti veniam nam iste earum consectetur, quisquam tenetur accusantium nisi quae dignissimos!",
         "stamp": "A.B."
       }
     },
     {
-      "card-id": "5",
-      "card-data": {
-        "link": "Link 1",
-        "number": "2341",
+      "id": "7",
+      "data": {
+        "link": "Link 444",
+        "number": "87654",
+        "status": "valid",
+        "body": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero quia, quas ea delectus laborum expedita porro sunt enim, deleniti veniam nam iste earum consectetur, quisquam tenetur accusantium nisi quae dignissimos!",
+        "stamp": "A.B."
+      }
+    },
+    {
+      "id": "8",
+      "data": {
+        "link": "Link 532",
+        "number": "6534",
         "status": "error",
         "body": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero quia, quas ea delectus laborum expedita porro sunt enim, deleniti veniam nam iste earum consectetur, quisquam tenetur accusantium nisi quae dignissimos!",
         "stamp": "A.B."
       }
     },
     {
-      "card-id": "6",
-      "card-data": {
-        "link": "Link 1",
-        "number": "2341",
+      "id": "9",
+      "data": {
+        "link": "Link 2345",
+        "number": "67",
         "status": "error",
         "body": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero quia, quas ea delectus laborum expedita porro sunt enim, deleniti veniam nam iste earum consectetur, quisquam tenetur accusantium nisi quae dignissimos!",
         "stamp": "A.B."
       }
     },
     {
-      "card-id": "7",
-      "card-data": {
-        "link": "Link 1",
-        "number": "2341",
-        "status": "error",
-        "body": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero quia, quas ea delectus laborum expedita porro sunt enim, deleniti veniam nam iste earum consectetur, quisquam tenetur accusantium nisi quae dignissimos!",
-        "stamp": "A.B."
-      }
-    },
-    {
-      "card-id": "8",
-      "card-data": {
-        "link": "Link 1",
-        "number": "2341",
-        "status": "error",
-        "body": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero quia, quas ea delectus laborum expedita porro sunt enim, deleniti veniam nam iste earum consectetur, quisquam tenetur accusantium nisi quae dignissimos!",
-        "stamp": "A.B."
-      }
-    },
-    {
-      "card-id": "9",
-      "card-data": {
-        "link": "Link 1",
-        "number": "2341",
-        "status": "error",
-        "body": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero quia, quas ea delectus laborum expedita porro sunt enim, deleniti veniam nam iste earum consectetur, quisquam tenetur accusantium nisi quae dignissimos!",
-        "stamp": "A.B."
-      }
-    },
-    {
-      "card-id": "10",
-      "card-data": {
-        "link": "Link 1",
-        "number": "2341",
-        "status": "error",
+      "id": "10",
+      "data": {
+        "link": "Link 14351",
+        "number": "113",
+        "status": "done",
         "body": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero quia, quas ea delectus laborum expedita porro sunt enim, deleniti veniam nam iste earum consectetur, quisquam tenetur accusantium nisi quae dignissimos!",
         "stamp": "A.B."
       }

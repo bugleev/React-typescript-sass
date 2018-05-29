@@ -1,8 +1,13 @@
 // tslint:disable:no-console
 
 import * as React from 'react';
+import Card from './Card';
 
 export interface IColumnProps extends React.HTMLAttributes<HTMLDivElement> {
+  cards?: Array<{
+    data: {},
+    id: string
+  }>,
   endNode?: null | string,
   startNode?: null | string,
   name: string,
@@ -13,7 +18,7 @@ export interface IColumnProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export default class Column extends React.Component<IColumnProps, any> {
   public state = {
-    children: null
+    cards: this.props.cards || null
   }
 
   public shouldComponentUpdate(nextProps: any, nextState: any) {
@@ -23,32 +28,23 @@ export default class Column extends React.Component<IColumnProps, any> {
     else { return false }
   }
   public componentDidUpdate() {
-    if (this.state.children !== this.countChildren()) {
-      this.setState({ children: this.countChildren() })
-    }
+    console.log("");
+
   }
-  public componentWillMount() {
-    this.setState({ children: (this.props.children && this.props.children.length) })
-  }
-  public countChildren = () => {
+
+  public countCards = () => {
     const parent = document.getElementById(this.props.id) as HTMLDivElement;
     return Array.from(parent.childNodes).length - 1;
   }
   public render() {
-    const children = React.Children.map(this.props.children, (child, index) => {
-      return React.cloneElement(child as React.ReactElement<any>, {
-        onDragOver: this.props.onDragOver,
-        onDragStart: this.props.onDragStart
-      })
-    })
 
-
+    const children = this.state.cards ? this.state.cards.map(card => {
+      return <Card key={card.id} data={card.data} id={card.id} onDragOver={this.props.onDragOver} onDragStart={this.props.onDragStart} />
+    }) : null
     return (
       <div className="column" onDragOver={this.props.onDragOver} onDrop={this.props.onDrop} onClick={this.props.onClick} id={this.props.id}>
         <p className="field-text">
-          {this.props.name} <span>({
-            this.state.children}
-            )</span>
+          {this.props.name} <span>({this.state.cards ? this.state.cards.length : 0})</span>
         </p>
         {children}
       </div>

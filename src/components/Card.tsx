@@ -2,50 +2,45 @@ import * as React from 'react';
 
 
 interface ICardProps extends React.HTMLAttributes<HTMLDivElement> {
+  data: {
+    link?: string,
+    number?: string,
+    status?: string,
+    body?: string,
+    stamp?: string
+  },
   id: string
 
 }
 class Card extends React.PureComponent<ICardProps, any> {
-  public state = {
-    cards: [
-      {
-        data: {
-          link: "Link 1",
-          number: "2341",
-          status: "error",
-          body: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero quia, quas ea delectus laborum expedita porro sunt enim, deleniti veniam nam iste earum consectetur, quisquam tenetur accusantium nisi quae dignissimos!",
-          stamp: "A.B."
-        },
-        id: 1
-      }
-    ]
-  }
+
   public render() {
+    const { data, id } = this.props;
     return (
       <div
         className="draggable card"
-        id={`${this.props.id}`}
+        id={`${id}`}
         draggable={true}
         onDragStart={this.props.onDragStart}
         onDragOver={this.props.onDragOver}
       >
         <div className="card--link">
-          <a href="#">Link 1</a>
+          <a href="#">{data.link}</a>
         </div>
         <div className="card--number">
           <div>
-            <span>№&#32;<a href="#">2341</a></span>
+            <span>№&#32;<a href="#">{data.number}</a></span>
             <span>норм</span>
           </div>
         </div>
         <div className="card--status">
-          <span>error</span>
+          <span>{data.status}</span>
         </div>
         <div className="card--body">
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero quia, quas ea delectus laborum expedita porro sunt enim, deleniti veniam nam iste earum consectetur, quisquam tenetur accusantium nisi quae dignissimos!</p>
+          <p>{data.body}</p>
         </div>
         <div className="card--stamp">
-          <span>A.B.</span>
+          <span>{data.stamp}</span>
         </div>
       </div>)
   }

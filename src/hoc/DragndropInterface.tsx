@@ -73,10 +73,8 @@ function DragndropInterface(WrappedComponent: React.ComponentClass<any>) {
       }
       const parent = currentTarget.parentElement as HTMLDivElement;
       if (currentId === this.state.prevSib || currentId === this.state.nextSib) {
-        if (this.state.blank && this.checkForBlanks(currentId) >= 1) {
-          this.removeBlank(currentId);
-          this.setState({ blank: false });
-        }
+        currentTarget.classList.add("droppable");
+
         ev.preventDefault();
         return;
       } else if (
