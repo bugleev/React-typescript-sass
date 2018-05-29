@@ -5,7 +5,7 @@ interface ICardProps extends React.HTMLAttributes<HTMLDivElement> {
   id: string
 
 }
-class Card extends React.Component<ICardProps, any> {
+class Card extends React.PureComponent<ICardProps, any> {
   public state = {}
   public render() {
     return (

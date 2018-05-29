@@ -3,17 +3,23 @@ import * as React from 'react';
 
 interface IDragState {
   blank: boolean
+  endNode: null | string,
+  updateOnDrop: boolean,
   nextSib: null | string,
   prevSib: null | string,
+  startNode: null | string
 }
 
 function DragndropInterface(WrappedComponent: React.ComponentClass<any>) {
 
-  return class Interface extends React.PureComponent<any, IDragState> {
+  return class Interface extends React.Component<any, IDragState> {
     public state = {
       blank: false,
+      endNode: null,
       nextSib: null,
-      prevSib: null
+      prevSib: null,
+      startNode: null,
+      updateOnDrop: false
 
     };
 
@@ -44,6 +50,7 @@ function DragndropInterface(WrappedComponent: React.ComponentClass<any>) {
       const parent = ev.currentTarget.parentElement as HTMLDivElement;
       const prevNode = parent.previousSibling as HTMLDivElement;
       const nextNode = parent.nextSibling as HTMLDivElement;
+      const startNode = parent.id;
       const prevSib =
         prevNode &&
         prevNode.id;
@@ -51,7 +58,9 @@ function DragndropInterface(WrappedComponent: React.ComponentClass<any>) {
         nextNode &&
         nextNode.id;
       if (prevSib !== this.state.prevSib || nextSib !== this.state.nextSib) {
-        this.setState({ prevSib, nextSib });
+        this.setState({ prevSib, nextSib, startNode, updateOnDrop: false });
+      } else {
+        this.setState({ updateOnDrop: false });
       }
     };
 
@@ -100,6 +109,7 @@ function DragndropInterface(WrappedComponent: React.ComponentClass<any>) {
         const data = ev.dataTransfer.getData("text");
         parent.insertBefore(document.getElementById(data) as HTMLDivElement, targetNode);
         parent.removeChild(targetNode);
+        this.setState({ endNode: parent.id, updateOnDrop: true });
       }
       if (
         ev.target.id === this.state.prevSib ||
@@ -108,6 +118,7 @@ function DragndropInterface(WrappedComponent: React.ComponentClass<any>) {
         ev.preventDefault();
         const data = ev.dataTransfer.getData("text");
         ev.target.appendChild(document.getElementById(data) as HTMLDivElement);
+        this.setState({ endNode: ev.target.id, updateOnDrop: true });
       }
     };
 
