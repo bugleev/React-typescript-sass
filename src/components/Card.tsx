@@ -6,7 +6,20 @@ interface ICardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 }
 class Card extends React.PureComponent<ICardProps, any> {
-  public state = {}
+  public state = {
+    cards: [
+      {
+        data: {
+          link: "Link 1",
+          number: "2341",
+          status: "error",
+          body: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero quia, quas ea delectus laborum expedita porro sunt enim, deleniti veniam nam iste earum consectetur, quisquam tenetur accusantium nisi quae dignissimos!",
+          stamp: "A.B."
+        },
+        id: 1
+      }
+    ]
+  }
   public render() {
     return (
       <div
