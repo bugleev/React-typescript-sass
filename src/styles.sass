@@ -15,6 +15,7 @@ $break-large: 1100px;
   .column    
     position: relative
     min-height: 100vh
+    min-width: 185px
     margin: 1rem
     padding-top: 0.75em
     display: flex    
@@ -28,9 +29,12 @@ $break-large: 1100px;
       flex-direction: row      
       flex-wrap: nowrap
       flex-basis: auto
-  .droppable
-    background-color: green
-    border: 3px solid #333
+  .droppable    
+    border: 3px dashed #333
+  .accepted
+    background-color: rgba(0, 128, 0, 0.3)
+  .declined
+    background-color: rgba(128, 25, 0, 0.3) 
 .draggable
   width: 180px
   height: 150px  
@@ -47,12 +51,33 @@ $break-large: 1100px;
   font-family: cursive
   @media screen and (max-width: $break-large) 
     min-width: 150px
+.modal
+  position: absolute
+  display: flex
+  flex-direction: column
+  align-items: center   
+  left: calc(50% - 300px)
+  width: 600px
+  transform: translateY(250px)
+  transition: transform 0.5s
+  height: 300px
+  z-index: 999
+  box-shadow: 0px 1px 40px #555
+  background-color: #fefefefe
+.backdrop
+  position: fixed
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+  background-color: blue  
 .card
   display: flex
   font-size: 0.8em
   padding: 3px
   flex-direction: column
   border: 1px solid #696969
+  cursor: pointer
   border-radius: 3px
   box-shadow: 0px 1px 2px rgba(0,0,0,0.25)
   @media screen and (max-width: $break-large) 
@@ -61,29 +86,30 @@ $break-large: 1100px;
     background-color: #FEFEFE
     padding: 0.2em
     border-bottom: 1px solid #333
-  .card--link
-    a
-      color: blue
-  .card--number
-    background-color: limegreen
-    a      
-      color: #333
-    >div    
-      display: flex
-      justify-content: space-between
-  .card--status
-    background-color: #FFFF38
-  .card--body
-    border-bottom:  1px solid rgba(0,0,0,0)
-    overflow-y: scroll
-    p
-      margin: 0
-      padding: 0       
-  .card--stamp
-    border-bottom:  0px solid rgba(0,0,0,0)
-    span
-      padding: 1px
-      background-color: red        
+.card--link
+  a
+    color: blue
+.card--number
+  background-color: limegreen
+  a      
+    color: #333
+  >div    
+    display: flex
+    justify-content: space-between
+.card--status
+  background-color: #FFFF38
+.card--body
+  border-bottom:  1px solid rgba(0,0,0,0)
+  padding-left: 0.5em
+  overflow-y: scroll
+  p
+    margin: 0
+    padding: 0       
+.card--stamp
+  border-bottom:  0px solid rgba(0,0,0,0)
+  span
+    padding: 1px
+    background-color: red        
       
 
   

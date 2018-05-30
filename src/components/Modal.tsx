@@ -1,30 +1,24 @@
 import * as React from 'react';
 
-
-interface ICardProps extends React.HTMLAttributes<HTMLDivElement> {
-  data: {
-    link?: string,
-    number?: string,
-    status?: string,
-    body?: string,
-    stamp?: string
-  },
-  id: string
+interface IModalProps {
+  cardData: {
+    data: {
+      link?: string,
+      number?: string,
+      status?: string,
+      body?: string,
+      stamp?: string
+    },
+    id: string
+  }
 
 }
-class Card extends React.PureComponent<ICardProps, any> {
 
+export default class Modal extends React.Component<IModalProps, any> {
   public render() {
-    const { data, id } = this.props;
+    const { data } = this.props.cardData;
     return (
-      <div
-        className="draggable card"
-        id={`${id}`}
-        draggable={true}
-        onDragStart={this.props.onDragStart}
-        onDragOver={this.props.onDragOver}
-        onClick={this.props.onClick}
-      >
+      <div className="modal">
         <div className="card--link">
           <a href="#">{data.link}</a>
         </div>
@@ -43,8 +37,7 @@ class Card extends React.PureComponent<ICardProps, any> {
         <div className="card--stamp">
           <span>{data.stamp}</span>
         </div>
-      </div>)
+      </div>
+    );
   }
 }
-
-export default Card;

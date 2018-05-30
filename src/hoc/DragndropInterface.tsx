@@ -32,7 +32,6 @@ function DragndropInterface(WrappedComponent: React.ComponentClass<any>) {
       const parent = ev.currentTarget.parentElement as HTMLDivElement;
       const prevNode = parent.previousSibling as HTMLDivElement;
       const nextNode = parent.nextSibling as HTMLDivElement;
-      const startNode = parent.id;
       const prevSib =
         prevNode &&
         prevNode.id;
@@ -40,7 +39,7 @@ function DragndropInterface(WrappedComponent: React.ComponentClass<any>) {
         nextNode &&
         nextNode.id;
       if (prevSib !== this.state.prevSib || nextSib !== this.state.nextSib) {
-        this.setState({ cardId: ev.currentTarget.id, prevSib, nextSib, startNode, updateOnDrop: false });
+        this.setState({ cardId: ev.currentTarget.id, prevSib, nextSib, startNode: parent.id, updateOnDrop: false });
       } else {
         this.setState({ cardId: ev.currentTarget.id, updateOnDrop: false });
       }
@@ -48,9 +47,7 @@ function DragndropInterface(WrappedComponent: React.ComponentClass<any>) {
 
     public allowDrop = (ev: any) => {
       const currentTarget = ev.target as HTMLDivElement;
-
       if (currentTarget.id === this.state.prevSib || currentTarget.id === this.state.nextSib) {
-        currentTarget.classList.add("droppable");
         ev.preventDefault();
         return;
       } else {

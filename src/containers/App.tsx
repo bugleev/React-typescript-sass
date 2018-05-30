@@ -1,9 +1,10 @@
 // tslint:disable:no-console
 import * as React from 'react';
+import Backdrop from '../components/Backdrop';
 import Column from '../components/Column';
-
+import Modal from '../components/Modal';
+import * as data from '../data.json';
 import '../styles.css';
-import * as data from './data.json';
 
 interface IAppProps {
   state: {
@@ -18,7 +19,9 @@ interface IAppProps {
   click?: any
 }
 interface IAppState {
-  cards: Array<React.ReactElement<any>>
+  cards: Array<React.ReactElement<any>>,
+  modalOpen: boolean,
+  modalData: {} | null
 }
 
 interface ILayoutProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -47,32 +50,47 @@ const Layout: React.SFC<ILayoutProps> = (props) => {
 
 class App extends React.Component<IAppProps, IAppState> {
   public state = {
-    cards: data.cards
+    cards: data.cards,
+    modalData: null,
+    modalOpen: false
   }
-
-
+  public shouldComponentUpdate(nextProps: any, nextState: any) {
+    if (nextProps.state.updateOnDrop || this.state.modalOpen !== nextState.modalOpen) {
+      return true;
+    }
+    else { return false }
+  }
+  public handleCardClick = (ev: any) => {
+    const modalData = this.pickCard(ev.currentTarget.id)[0]
+    this.setState({ modalOpen: !this.state.modalOpen, modalData })
+  }
+  public removeModal = (ev: any) => {
+    this.setState({ modalOpen: false })
+  }
   public pickCard = (cardId: string) => {
-    console.log("picking!");
-
     return this.state.cards.filter((el: any) => el.id === cardId)
   }
   public render() {
-    const { cards } = this.state;
+    const { cards, modalOpen } = this.state;
     return (
-      <Layout
-        cardToDrop={this.pickCard(this.props.state.cardId!)[0]}
-        endNode={this.props.state.endNode}
-        startNode={this.props.state.startNode}
-        onDragStart={this.props.drag}
-        onClick={this.props.click}
-        onDrop={this.props.drop}
-        onDragOver={this.props.allowDrop}>
-        <Column name="Согласование" id="1" cards={cards} />
-        <Column name="В ожидании" id="2" />
-        <Column name="Разработка" id="3" />
-        <Column name="Тестирование" id="4" />
-        <Column name="Готово" id="5" />
-      </Layout>
+      <>
+        {modalOpen && <Modal cardData={this.state.modalData!} />}
+        {modalOpen && <Backdrop onClick={this.removeModal} />}
+        <Layout
+          cardToDrop={this.pickCard(this.props.state.cardId!)[0]}
+          endNode={this.props.state.endNode}
+          startNode={this.props.state.startNode}
+          onDragStart={this.props.drag}
+          onClick={this.handleCardClick}
+          onDrop={this.props.drop}
+          onDragOver={this.props.allowDrop}>
+          <Column name="Согласование" id="1" cards={cards} />
+          <Column name="В ожидании" id="2" />
+          <Column name="Разработка" id="3" />
+          <Column name="Тестирование" id="4" />
+          <Column name="Готово" id="5" />
+        </Layout>
+      </>
     );
   }
 }
