@@ -6,6 +6,6 @@ interface IBackdropProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export default function Backdrop(props: IBackdropProps) {
   return (
-    <div className="backdrop" />
+    <div className="backdrop" onClick={props.onClick} />
   );
-}
+} 

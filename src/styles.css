@@ -57,18 +57,56 @@
       min-width: 150px; } }
 
 .modal {
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
   left: calc(50% - 300px);
   width: 600px;
-  transform: translateY(250px);
+  transform: translateY(-100%);
   transition: transform 0.5s;
-  height: 300px;
+  min-height: 300px;
   z-index: 999;
-  box-shadow: 0px 1px 40px #555;
+  box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.65);
   background-color: #fefefefe; }
+  @media screen and (max-width: 610px) {
+    .modal {
+      width: 300px;
+      left: calc(50% - 150px); } }
+  .modal > div {
+    margin: 0.3em; }
+  .modal .card--link a {
+    color: blue; }
+  .modal .card--number {
+    width: 90%;
+    background-color: limegreen; }
+    .modal .card--number a {
+      color: #333; }
+    .modal .card--number > div {
+      display: flex;
+      justify-content: space-between; }
+  .modal .card--status {
+    width: 90%;
+    background-color: #FFFF38; }
+  .modal .card--body {
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+    width: 90%; }
+    .modal .card--body p {
+      text-align: justify;
+      margin: 0;
+      padding: 0; }
+  .modal .card--stamp {
+    justify-self: flex-end;
+    border-bottom: 0px solid rgba(0, 0, 0, 0); }
+    .modal .card--stamp span {
+      padding: 1px;
+      background-color: red; }
+
+.open {
+  transform: translateY(70%); }
+
+.close {
+  transition: transform 0.2s; }
 
 .backdrop {
   position: fixed;
@@ -76,7 +114,8 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: blue; }
+  z-index: 989;
+  background-color: rgba(0, 0, 0, 0.35); }
 
 .card {
   display: flex;
@@ -94,31 +133,26 @@
     background-color: #FEFEFE;
     padding: 0.2em;
     border-bottom: 1px solid #333; }
-
-.card--link a {
-  color: blue; }
-
-.card--number {
-  background-color: limegreen; }
-  .card--number a {
-    color: #333; }
-  .card--number > div {
-    display: flex;
-    justify-content: space-between; }
-
-.card--status {
-  background-color: #FFFF38; }
-
-.card--body {
-  border-bottom: 1px solid rgba(0, 0, 0, 0);
-  padding-left: 0.5em;
-  overflow-y: scroll; }
-  .card--body p {
-    margin: 0;
-    padding: 0; }
-
-.card--stamp {
-  border-bottom: 0px solid rgba(0, 0, 0, 0); }
-  .card--stamp span {
-    padding: 1px;
-    background-color: red; }
+  .card .card--link a {
+    color: blue; }
+  .card .card--number {
+    background-color: limegreen; }
+    .card .card--number a {
+      color: #333; }
+    .card .card--number > div {
+      display: flex;
+      justify-content: space-between; }
+  .card .card--status {
+    background-color: #FFFF38; }
+  .card .card--body {
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+    padding-left: 0.5em;
+    overflow-y: scroll; }
+    .card .card--body p {
+      margin: 0;
+      padding: 0; }
+  .card .card--stamp {
+    border-bottom: 0px solid rgba(0, 0, 0, 0); }
+    .card .card--stamp span {
+      padding: 1px;
+      background-color: red; }

@@ -3,11 +3,10 @@ import * as ReactDOM from 'react-dom';
 import App from './containers/App';
 import DragndropInterface from './hoc/DragndropInterface';
 import './index.css';
-import registerServiceWorker from './registerServiceWorker';
 
 const DragndropApp = DragndropInterface(App);
 ReactDOM.render(
   <DragndropApp />,
   document.getElementById('root') as HTMLElement
 );
-registerServiceWorker();
+

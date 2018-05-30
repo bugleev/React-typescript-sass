@@ -60,12 +60,29 @@ class App extends React.Component<IAppProps, IAppState> {
     }
     else { return false }
   }
+  public componentDidUpdate() {
+    if (this.state.modalOpen) {
+      document.body.style.overflow = "hidden";
+      setTimeout(() => {
+        document.querySelector(".modal")!.classList.add("open")
+      }, 50)
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }
+
   public handleCardClick = (ev: any) => {
     const modalData = this.pickCard(ev.currentTarget.id)[0]
     this.setState({ modalOpen: !this.state.modalOpen, modalData })
   }
   public removeModal = (ev: any) => {
-    this.setState({ modalOpen: false })
+    console.log("click");
+    document.querySelector(".modal")!.classList.remove("open")
+    document.querySelector(".modal")!.classList.add("close")
+    setTimeout(() => {
+      this.setState({ modalOpen: false })
+    }, 200)
+
   }
   public pickCard = (cardId: string) => {
     return this.state.cards.filter((el: any) => el.id === cardId)
