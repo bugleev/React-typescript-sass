@@ -7,6 +7,7 @@ import * as data from './data.json';
 
 interface IAppProps {
   state: {
+    cardId: null | string,
     endNode: null | string,
     startNode: null | string,
     updateOnDrop: boolean
@@ -21,7 +22,7 @@ interface IAppState {
 }
 
 interface ILayoutProps extends React.HTMLAttributes<HTMLDivElement> {
-
+  cardToDrop?: null | string,
   endNode?: null | string,
   onDragOver?: any,
   startNode?: null | string
@@ -30,6 +31,7 @@ interface ILayoutProps extends React.HTMLAttributes<HTMLDivElement> {
 const Layout: React.SFC<ILayoutProps> = (props) => {
   const children = React.Children.map(props.children, (child, index) => {
     return React.cloneElement(child as React.ReactElement<any>, {
+      cardToDrop: props.cardToDrop,
       endNode: props.endNode,
       onClick: props.onClick,
       onDragOver: props.onDragOver,
@@ -48,16 +50,17 @@ class App extends React.Component<IAppProps, IAppState> {
     cards: data.cards
   }
 
-  public shouldComponentUpdate(nextProps: any, nextState: any) {
-    if (nextProps.state.updateOnDrop) {
-      return true;
-    }
-    else { return false }
+
+  public pickCard = (cardId: string) => {
+    console.log("picking!");
+
+    return this.state.cards.filter((el: any) => el.id === cardId)
   }
   public render() {
     const { cards } = this.state;
     return (
       <Layout
+        cardToDrop={this.pickCard(this.props.state.cardId!)[0]}
         endNode={this.props.state.endNode}
         startNode={this.props.state.startNode}
         onDragStart={this.props.drag}
