@@ -13,6 +13,8 @@ interface IAppProps {
     startNode: null | string,
     updateOnDrop: boolean
   },
+
+
   allowDrop?: any,
   drop?: any,
   drag?: any,
