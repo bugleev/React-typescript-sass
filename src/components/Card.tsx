@@ -13,7 +13,6 @@ interface ICardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 }
 class Card extends React.PureComponent<ICardProps, any> {
-
   public render() {
     const { data, id } = this.props;
     return (
@@ -22,7 +21,6 @@ class Card extends React.PureComponent<ICardProps, any> {
         id={`${id}`}
         draggable={true}
         onDragStart={this.props.onDragStart}
-        onDragOver={this.props.onDragOver}
         onClick={this.props.onClick}
       >
         <div className="card--link">
@@ -46,5 +44,4 @@ class Card extends React.PureComponent<ICardProps, any> {
       </div>)
   }
 }
-
 export default Card;

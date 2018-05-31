@@ -1,4 +1,3 @@
-// tslint:disable:no-console
 import * as React from 'react';
 import Backdrop from '../components/Backdrop';
 import Column from '../components/Column';
@@ -13,8 +12,6 @@ interface IAppProps {
     startNode: null | string,
     updateOnDrop: boolean
   },
-
-
   allowDrop?: any,
   drop?: any,
   drag?: any,
@@ -42,7 +39,7 @@ const Layout: React.SFC<ILayoutProps> = (props) => {
       onDragOver: props.onDragOver,
       onDragStart: props.onDragStart,
       onDrop: props.onDrop,
-      startNode: props.startNode
+      startNode: props.startNode,
     })
   })
   return (<div className="container">
@@ -66,19 +63,21 @@ class App extends React.Component<IAppProps, IAppState> {
     if (this.state.modalOpen) {
       document.body.style.overflow = "hidden";
       setTimeout(() => {
-        document.querySelector(".modal")!.classList.add("open")
-      }, 50)
+        const modal = document.querySelector(".modal");
+        if (modal) {
+          modal.classList.add("open");
+        }
+      }, 25)
     } else {
       document.body.style.overflow = "auto";
     }
   }
 
-  public handleCardClick = (ev: any) => {
+  public handleCardClick = (ev: React.MouseEvent<HTMLDivElement>) => {
     const modalData = this.pickCard(ev.currentTarget.id)[0]
-    this.setState({ modalOpen: !this.state.modalOpen, modalData })
+    this.setState({ modalOpen: true, modalData })
   }
-  public removeModal = (ev: any) => {
-    console.log("click");
+  public removeModal = (ev: React.MouseEvent<HTMLDivElement>) => {
     document.querySelector(".modal")!.classList.remove("open")
     document.querySelector(".modal")!.classList.add("close")
     setTimeout(() => {
@@ -99,10 +98,10 @@ class App extends React.Component<IAppProps, IAppState> {
           cardToDrop={this.pickCard(this.props.state.cardId!)[0]}
           endNode={this.props.state.endNode}
           startNode={this.props.state.startNode}
-          onDragStart={this.props.drag}
           onClick={this.handleCardClick}
-          onDrop={this.props.drop}
-          onDragOver={this.props.allowDrop}>
+          onDragStart={this.props.drag}
+          onDragOver={this.props.allowDrop}
+          onDrop={this.props.drop}>
           <Column name="Согласование" id="1" cards={cards} />
           <Column name="В ожидании" id="2" />
           <Column name="Разработка" id="3" />

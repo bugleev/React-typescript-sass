@@ -1,4 +1,3 @@
-// tslint:disable:no-console
 import * as React from 'react';
 
 interface IDragState {
@@ -23,10 +22,6 @@ function DragndropInterface(WrappedComponent: React.ComponentClass<any>) {
 
     };
 
-    public click = (ev: React.MouseEvent<HTMLDivElement>) => {
-      console.log(":TEST")
-    };
-
     public drag = (ev: React.DragEvent<HTMLDivElement>) => {
       ev.dataTransfer.setData("text", ev.currentTarget.id);
       const parent = ev.currentTarget.parentElement as HTMLDivElement;
@@ -41,7 +36,7 @@ function DragndropInterface(WrappedComponent: React.ComponentClass<any>) {
       if (prevSib !== this.state.prevSib || nextSib !== this.state.nextSib) {
         this.setState({ cardId: ev.currentTarget.id, prevSib, nextSib, startNode: parent.id, updateOnDrop: false });
       } else {
-        this.setState({ cardId: ev.currentTarget.id, updateOnDrop: false });
+        this.setState({ cardId: ev.currentTarget.id, startNode: parent.id, updateOnDrop: false });
       }
     };
 
@@ -61,7 +56,11 @@ function DragndropInterface(WrappedComponent: React.ComponentClass<any>) {
         ev.target.id === this.state.nextSib
       ) {
         ev.preventDefault();
-        this.setState({ endNode: ev.target.id, updateOnDrop: true });
+        this.setState({ endNode: ev.target.id, updateOnDrop: true }, () => {
+          setTimeout(() => {
+            this.setState({ endNode: null, startNode: null })
+          }, 100)
+        });
       }
     };
 
@@ -71,7 +70,6 @@ function DragndropInterface(WrappedComponent: React.ComponentClass<any>) {
         drop={this.drop}
         allowDrop={this.allowDrop}
         drag={this.drag}
-        click={this.click}
         {...this.props}
       />;
     }

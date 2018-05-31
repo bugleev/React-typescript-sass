@@ -1,5 +1,3 @@
-// tslint:disable:no-console
-
 import * as React from 'react';
 import Card from './Card';
 
@@ -13,7 +11,8 @@ interface IColumnProps extends React.HTMLAttributes<HTMLDivElement> {
   startNode?: null | string,
   name: string,
   id: string,
-  children?: any
+  children?: any,
+  update?: boolean
 }
 
 export default class Column extends React.Component<IColumnProps, any> {
@@ -64,7 +63,6 @@ export default class Column extends React.Component<IColumnProps, any> {
           key={card.id}
           data={card.data}
           id={card.id}
-          onDragOver={this.props.onDragOver}
           onDragStart={this.props.onDragStart}
           onClick={this.props.onClick}
         />
