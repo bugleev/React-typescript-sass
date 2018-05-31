@@ -14,8 +14,11 @@
 Выполнено на стеке React, Typescript, Sass. Бойлерплейт - [create-react-app-typescript](https://github.com/wmonk/create-react-app-typescript). 
 
 <h3 align="center">Как запустить</h3>
+
 * Клонировать репозиторий
+
 * Перейти в консоли в папку с проектом
+
 * Установить зависимости
 
 ```bash
